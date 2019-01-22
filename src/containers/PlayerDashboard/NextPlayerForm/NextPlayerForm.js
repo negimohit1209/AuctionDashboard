@@ -11,7 +11,7 @@ const NextPlayerForm = props => {
       <form onSubmit={props.handleSubmit}>
         <label>
           Name:
-          <input type="text" value={props.playerNumber} onChange={props.handleChange} />
+          <input type="text" onChange={props.handleChange} />
         </label>
         <input type="submit" value="Submit" />
       </form>

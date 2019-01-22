@@ -12,4 +12,4 @@ const PlayerDetail = (props) => {
   )
 }
 
-export default PlayerDetail
+export default PlayerDetail;
