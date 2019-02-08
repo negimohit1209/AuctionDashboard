@@ -1,0 +1,10 @@
+.outerbutton{
+    display: flex;
+    justify-content: center
+}
+
+.button{
+    width: 60px;
+    display: flex;
+    margin: 20px;
+}

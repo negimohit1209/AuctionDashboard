@@ -1,0 +1,13 @@
+.Details {
+    display: flex;
+  }
+
+  .Upinfo{
+      width: 100%;
+      margin-left: 5px;
+      text-align: left;
+  }
+  .Info{
+      height: 220px;
+      width: 100%;
+  }
