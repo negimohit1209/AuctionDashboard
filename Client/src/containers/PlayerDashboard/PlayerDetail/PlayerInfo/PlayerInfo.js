@@ -14,22 +14,21 @@ const PlayerInfo = (props) => {
       <div className={classes.Upinfo}>
         <Paper>
           <div className={classes.Info}>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            Name: <strong>Mayukh Barua</strong>
-          </Typography>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            Department: <strong>ETC</strong>
-          </Typography>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            Year: <strong>NA</strong>
-          </Typography>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            Hostel: <strong>Sen Hall</strong>
-          </Typography>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            Availability: <strong> Not Available</strong>
-            
-          </Typography>
+          <Typography variant="h5" component="h2">
+          {props.player.Name}
+        </Typography>
+        <Typography variant="h5" component="h2">
+          {props.player.Department}
+        </Typography>
+        <Typography variant="h5" component="h2">
+          {props.player.Hostel}
+        </Typography>
+        <Typography variant="h5" component="h2">
+          {props.player.Year}
+        </Typography>
+        <Typography variant="h5" component="h2">
+          {props.player.Availability}
+        </Typography>
           <LetterAvatars />
           </div>
         </Paper>

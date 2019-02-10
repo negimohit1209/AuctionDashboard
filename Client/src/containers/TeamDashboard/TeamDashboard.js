@@ -7,15 +7,11 @@ export default class PlayerDashboard extends Component {
   render() {
     return (
       <Aux>
-        <h1>Team area</h1>
         <div className={classes.Card}>
-          <SimpleCard name="Team A"/>
-          <SimpleCard name="Team B"/>
-          <SimpleCard name="Team C"/>
-          <SimpleCard name="Team D"/>
-          <SimpleCard name="Team E"/>
+          {this.props.teams.map((team,index) => {
+            return (<SimpleCard key={index} name={team.Name} Amount={team.Amount} noOfPlayers={team.noOfPlayers}/>)
+          })}
         </div>
-        
       </Aux>
     )
   }

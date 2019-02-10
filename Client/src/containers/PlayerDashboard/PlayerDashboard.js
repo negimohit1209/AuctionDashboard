@@ -3,7 +3,6 @@ import Aux from '../../hoc/Auxillary';
 import Welcome from './Welcome/Welcome';
 import PlayerDetail from './PlayerDetail/PlayerDetail';
 import NextPlayerForm from './NextPlayerForm/NextPlayerForm';
-import Players from '../../Dataset/Player';
 import axios from 'axios';
 export default class PlayerDashboard extends Component {
   constructor(props){
@@ -12,14 +11,15 @@ export default class PlayerDashboard extends Component {
       displayWelcomePage: true,
       displayPlayerDetail: false,
       playerNumberToBeDisplayed: null,
-      players: Players,
+      players: [],
+      teams: [],
       player: null,
-      auctionScore: 0
+      auctionScore: 0,
+      selectTeam: false,
+      playerTeam: ""
     }
   }
-  componentDidMount(){
-    axios.get('http://localhost:5000/api/players').then(res => console.log(res.data))
-  }
+
   StartAuction = () => {
     this.setState({displayWelcomePage: false})
   }
@@ -28,7 +28,7 @@ export default class PlayerDashboard extends Component {
   }
   handleNextPlayerFormSubmit = (event) => {
     event.preventDefault();
-    let player = this.state.players.find((player) => player.number === this.state.playerNumberToBeDisplayed)
+    let player = this.props.players.find((player) => player.Number === this.state.playerNumberToBeDisplayed)
     this.setState({
       displayPlayerDetail: true,
       player: player
@@ -43,8 +43,7 @@ export default class PlayerDashboard extends Component {
       auctionScore: IncreasedPoints
     })
   }
-  auctionDecrement = (amt) => {
-    
+  auctionDecrement = (amt) => { 
     let decreasedPoints = this.state.auctionScore - amt;
     this.setState({
       auctionScore: decreasedPoints
@@ -55,6 +54,33 @@ export default class PlayerDashboard extends Component {
       auctionScore: 0
     })
   }
+  modalOpen = ()=>{
+    this.setState({
+      selectTeam: true
+    })
+  }
+  modalClose = () => {
+    this.setState({
+      selectTeam: false
+    })
+  }
+  handleTeamSelect = event => {
+    this.setState({ playerTeam : event.target.value });
+  };
+
+  handleSold = (player, team ,price) => {
+      alert(`${price}`)
+      this.setState({
+      displayWelcomePage: false,
+      displayPlayerDetail: false,
+      playerNumberToBeDisplayed: null,
+      player: null,
+      auctionScore: 0,
+      selectTeam: false,
+      playerTeam: ""
+        })
+        
+  }
   render() {
     let display;
     if(this.state.displayWelcomePage){
@@ -64,10 +90,18 @@ export default class PlayerDashboard extends Component {
         
         display = <PlayerDetail 
         player={this.state.player}
+        playerTeam = {this.state.playerTeam}
+        auctionScore = {this.state.auctionScore}
+        openmodal = {this.state.selectTeam}
         score={this.state.auctionScore}
-        increment={() => this.auctionIncrement(100)}
+        teams = {this.props.teams}
+        increment={this.auctionIncrement}
+        modalOpen={this.modalOpen}
         decrement = {()=> this.auctionDecrement(100)}
         reset = {this.auctionReset}
+        modalClose = {this.modalClose}
+        handleTeamSelect = {this.handleTeamSelect}
+        handleSold = {this.handleSold}
         />
       }else{
         display = <NextPlayerForm 

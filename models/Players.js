@@ -54,6 +54,7 @@ var PlayerSchema = new mongoose.Schema({
    WhatsappNumber: String,
    Availability: String,
    Number: Number,
+   Team: String
 });
  
 module.exports = mongoose.model("Player", PlayerSchema);

@@ -12,22 +12,36 @@ const AuctionBoard = (props) => {
     <ScoreBoard score={props.score}/>
     <div className={classes.outerbutton}>
       <div className={classes.button}>
-      <Fab color="#f44336" aria-label="minus" className={classes.fab} onClick={props.decrement}>
-      <i class="material-icons">
+      <Fab color="secondary" aria-label="minus" className={classes.fab} onClick={() => props.decrement(100)}>
+      <i className="material-icons">
         remove
       </i>
       </Fab>
       </div>
       <div className={classes.button}>
-      <Fab color="primary" aria-label="Add" className={classes.fab} onClick={props.increment}>
-      <i class="material-icons">
-shopping_cart
-</i>
+      <Fab color="primary" aria-label="Add" className={classes.fab} onClick={props.modalOpen}>
+      <i className="material-icons">
+      shopping_cart
+      </i>
       </Fab>
       </div>
       <div className={classes.button}>
-      <Fab color="primary" aria-label="Add" className={classes.fab} onClick={props.increment}>
-      <i class="material-icons">
+      <Fab color="primary" aria-label="Add" className={classes.fab} onClick={() => props.increment(100)}>
+      <i className="material-icons">
+      add
+      </i>
+      </Fab>
+      </div>
+      <div className={classes.button}>
+      <Fab color="primary" aria-label="Add" className={classes.fab} onClick={() => props.increment(50)}>
+      <i className="material-icons">
+        add
+      </i>
+      </Fab>
+      </div>
+      <div className={classes.button}>
+      <Fab color="primary" aria-label="Add" className={classes.fab} onClick={() => props.increment(10)}>
+      <i className="material-icons">
         add
       </i>
       </Fab>

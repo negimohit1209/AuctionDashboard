@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 const styles = {
   card: {
     minWidth: 275,
-    width: 300
+    width: 300 
   },
   bullet: {
     display: 'inline-block',
@@ -36,10 +36,10 @@ function SimpleCard(props) {
         </Typography>
         <br/>
         <Typography component="p">
-          Remaining Points: <strong>10000</strong>
+          Remaining Points: <strong>{props.Amount}</strong>
         </Typography>
         <Typography component="p">
-          Slots available: <strong>15</strong>
+          Players: <strong>{props.noOfPlayers}</strong>
         </Typography>
       </CardContent>
       <CardActions>
