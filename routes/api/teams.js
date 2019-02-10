@@ -9,4 +9,14 @@ router.get('/', (req,res) => {
         .then(items => res.json(items))
 });
 
+router.put('/:teamid', (req,res) => {
+    Team.findById(req.params.teamid)
+    .then((team) => {
+        team.Amount = team.Amount - req.body.price
+        team.noOfPlayers += 1
+        team.save();
+        res.send(team)
+    });
+});
+
 module.exports = router;

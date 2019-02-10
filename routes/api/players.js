@@ -13,7 +13,8 @@ router.get('/', (req,res) => {
 });
 
 router.put('/:id/:team', (req,res) => {
-    Player.findByIdAndUpdate(req.params.id, {Name: 'jason bourne'}).then(player => res.send(player))
+    Player.findByIdAndUpdate(req.params.id, {Team: req.params.team, price: req.body.price})
+    .then(player => res.send(player))
 })
 
 module.exports = router;

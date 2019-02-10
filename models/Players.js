@@ -54,7 +54,11 @@ var PlayerSchema = new mongoose.Schema({
    WhatsappNumber: String,
    Availability: String,
    Number: Number,
-   Team: String
+   Team: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Teams"
+  },
+  price: Number
 });
  
 module.exports = mongoose.model("Player", PlayerSchema);
