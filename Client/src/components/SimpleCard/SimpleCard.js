@@ -6,11 +6,14 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
+import ImageAvatars from '../Avatar/Avatar';
+import myclasses from './SImpleCard.module.css'
 const styles = {
   card: {
     minWidth: 275,
-    width: 300 
+    width: 300,
+    height: 240,
+    boxSizing: "border-box" 
   },
   bullet: {
     display: 'inline-block',
@@ -29,22 +32,29 @@ function SimpleCard(props) {
   const { classes } = props;
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} onClick={() => props.handleViewClick(props.id)} >
       <CardContent>
-        <Typography variant="h4" component="h2">
-          {props.name}
-        </Typography>
-        <br/>
-        <Typography component="p">
-          Remaining Points: <strong>{props.Amount}</strong>
-        </Typography>
-        <Typography component="p">
-          Players: <strong>{props.noOfPlayers}</strong>
-        </Typography>
+      <div className={myclasses.Outer}>
+      <Typography variant="h4" component="h2">
+      {props.name}
+    </Typography>
+    <div className={myclasses.Avatar}>
+    
+    {props.players.map(player => <ImageAvatars image={player} size="small"/>)}
+    
+    </div>
+  <div className={myclasses.Inner}>
+  <Typography component="p">
+  Remaining Points: <strong>{props.Amount}</strong>
+  </Typography>
+  <Typography component="p">
+  Players: <strong>{props.noOfPlayers}</strong>
+  </Typography>
+  </div>
+      </div>
+        
+        
       </CardContent>
-      <CardActions>
-        <Button size="small" onClick={() => props.handleViewClick(props.id)}>view</Button>
-      </CardActions>
     </Card>
   );
 }

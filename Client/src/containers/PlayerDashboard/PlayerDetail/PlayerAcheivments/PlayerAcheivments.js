@@ -1,9 +1,11 @@
 import React from 'react'
-
+import Typography from '@material-ui/core/Typography';
 const PlayerAcheivments = () => {
   return (
     <div>
-      <h1>Dashbord</h1>
+    <Typography variant="h4" component="h2">
+    Auction Board
+  </Typography>
     </div>
   )
 }

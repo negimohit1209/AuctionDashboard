@@ -8,19 +8,33 @@ const styles = {
     margin: 10,
   },
   bigAvatar: {
-    marginright: 10,
+    margin: 10,
     width: 250,
     height: 250,
+  },
+  smallAvatar: {
+    margin: 2,
+    width: 38,
+    height: 38,
   },
 };
 
 function ImageAvatars(props) {
+  
   const { classes } = props;
   let src = `assets/${props.image}.jpg`;
-  console.log(src)
-  return (
+  let size = props.size;
+  if(size === "big"){
+    return (
       <Avatar alt="Remy Sharp" src={src} className={classes.bigAvatar} />
   );
+  }
+  if(size === "small"){
+    return (
+      <Avatar alt="Remy Sharp" src={src} className={classes.smallAvatar} />
+  );
+  }
+
 }
 
 ImageAvatars.propTypes = {

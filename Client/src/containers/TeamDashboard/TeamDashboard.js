@@ -10,8 +10,14 @@ export default class PlayerDashboard extends Component {
     super(props);
     this.state = {
       teamList: [],
-      modalOpen: false
+      modalOpen: false,
+      teams: []
     }
+  }
+  componentWillMount(){
+    this.setState({
+      teams: this.props.teams
+    })
   }
   modalClose = () => {
     this.setState({
@@ -23,7 +29,7 @@ export default class PlayerDashboard extends Component {
     axios.get(`http://localhost:5000/api/teams/${id}`)
     .then(res => this.setState({
       teamList: res.data,
-      modalOpen: true
+      modalOpen: true,
     }))
     // this.setState({
     //   modalOpen:true
@@ -35,7 +41,8 @@ export default class PlayerDashboard extends Component {
       <div className={classes.fullscreen}>
       <div className={classes.Card}>
       {this.props.teams.map((team,index) => {
-        return (<SimpleCard key={index} name={team.Name} Amount={team.Amount} noOfPlayers={team.noOfPlayers} id={team._id} handleViewClick={this.handleViewClick} teamList={this.state.teamList} modalOpen={this.modalOpen}/>)
+        console.log(team.playerNo)
+        return (<SimpleCard key={index} name={team.Name} Amount={team.Amount} noOfPlayers={team.noOfPlayers} id={team._id} handleViewClick={this.handleViewClick} teamList={this.state.teamList} modalOpen={this.modalOpen} players={team.playerNo}/>)
       })}
     </div>
       <TeamListModal open={this.state.modalOpen} handleClose={this.modalClose} teamList={this.state.teamList}/>

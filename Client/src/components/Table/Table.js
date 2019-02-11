@@ -49,7 +49,7 @@ function CustomizedTable(props) {
   const { classes } = props;
   let rows = [];
     props.teamList.forEach((player) => {
-        rows.push(createData(player.Name, player.Department, player.Year, player.Hostel, player.price))
+        rows.push(createData(player.Name, player.Department, player.Position, player.Hostel, player.price))
     })
   return (
     <Paper className={classes.root}>
@@ -57,7 +57,7 @@ function CustomizedTable(props) {
         <TableHead>
           <TableRow>
             <CustomTableCell>Player Name</CustomTableCell>
-            <CustomTableCell align="right">Department</CustomTableCell>
+            <CustomTableCell align="right">Position</CustomTableCell>
             <CustomTableCell align="right">Year</CustomTableCell>
             <CustomTableCell align="right">Hostel</CustomTableCell>
             <CustomTableCell align="right">Price</CustomTableCell>

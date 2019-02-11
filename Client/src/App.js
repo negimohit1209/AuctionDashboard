@@ -97,7 +97,7 @@ class App extends Component {
     })
   }
   handleSold = (player, team ,price) => {
-      axios.put(`http://localhost:5000/api/teams/${team}`, {price})
+      axios.put(`http://localhost:5000/api/teams/${team}`, {price, playerNo: player.Number})
       .then(res => {
         console.log(res);
         return axios.put(`http://localhost:5000/api/players/${player._id}/${team}`, {price});

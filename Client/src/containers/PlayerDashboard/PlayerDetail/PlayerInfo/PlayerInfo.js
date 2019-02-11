@@ -9,7 +9,8 @@ const PlayerInfo = (props) => {
   return (
     <div className={classes.Details}>
       <div className="Avatar">
-        <ImageAvatars image={props.player.Number}/>
+        
+        <ImageAvatars image={props.player.Number} size="big"/>
       </div>
       <div className={classes.Upinfo}>
         <Paper>

@@ -19,6 +19,7 @@ router.put('/:teamid', (req,res) => {
     .then((team) => {
         team.Amount = team.Amount - req.body.price
         team.noOfPlayers += 1
+        team.playerNo.push(req.body.playerNo)
         team.save();
         res.send(team)
     });

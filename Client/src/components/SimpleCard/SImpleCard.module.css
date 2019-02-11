@@ -1,0 +1,15 @@
+.Avatar{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Outer{
+    position: relative;
+    height: 225px;
+}
+.Inner{
+    position: absolute;
+    bottom: 0;
+}
