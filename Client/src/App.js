@@ -85,7 +85,17 @@ class App extends Component {
   handleTeamSelect = event => {
     this.setState({ playerTeam : event.target.value });
   };
-
+  backToForm = () => {
+    this.setState({
+      displayWelcomePage: false,
+      displayPlayerDetail: false,
+      playerNumberToBeDisplayed: null,
+      player: null,
+      auctionScore: 0,
+      selectTeam: false,
+      playerTeam: "",
+    })
+  }
   handleSold = (player, team ,price) => {
       axios.put(`http://localhost:5000/api/teams/${team}`, {price})
       .then(res => {
@@ -138,6 +148,7 @@ class App extends Component {
         OpenRulePage = {this.OpenRulePage}
         handleNextPlayerFormChange = {this.handleNextPlayerFormChange}
         handleNextPlayerFormSubmit = {this.handleNextPlayerFormSubmit}
+        backToForm = {this.backToForm}
         /></Paper>
           
         </div>

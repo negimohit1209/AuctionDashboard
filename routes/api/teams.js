@@ -9,6 +9,11 @@ router.get('/', (req,res) => {
         .then(items => res.json(items))
 });
 
+router.get('/:id', (req,res) => {
+    Player.find({Team: req.params.id})
+        .then(players => res.json(players))
+})
+
 router.put('/:teamid', (req,res) => {
     Team.findById(req.params.teamid)
     .then((team) => {

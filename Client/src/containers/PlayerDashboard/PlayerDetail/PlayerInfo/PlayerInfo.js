@@ -9,7 +9,7 @@ const PlayerInfo = (props) => {
   return (
     <div className={classes.Details}>
       <div className="Avatar">
-        <ImageAvatars />
+        <ImageAvatars image={props.player.Number}/>
       </div>
       <div className={classes.Upinfo}>
         <Paper>
@@ -26,10 +26,10 @@ const PlayerInfo = (props) => {
         <Typography variant="h5" component="h2">
           {props.player.Year}
         </Typography>
-        <Typography variant="h5" component="h2">
+        <Typography variant="h6" component="h2">
           {props.player.Availability}
         </Typography>
-          <LetterAvatars />
+          <LetterAvatars position={props.player.Position}/>
           </div>
         </Paper>
         </div> 

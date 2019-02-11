@@ -3,6 +3,7 @@ import Aux from '../../hoc/Auxillary';
 import Welcome from './Welcome/Welcome';
 import PlayerDetail from './PlayerDetail/PlayerDetail';
 import NextPlayerForm from './NextPlayerForm/NextPlayerForm';
+import classes from './PlayerDashboard.module.css';
 export default class PlayerDashboard extends Component {
   render() {
     let display;
@@ -25,6 +26,7 @@ export default class PlayerDashboard extends Component {
         modalClose = {this.props.modalClose}
         handleTeamSelect = {this.props.handleTeamSelect}
         handleSold = {this.props.handleSold}
+        backToForm = {this.props.backToForm}
         />
       }else{
         display = <NextPlayerForm 
@@ -37,7 +39,9 @@ export default class PlayerDashboard extends Component {
     }
     return (
       <Aux>
+      <div className={classes.fullscreen}>
         {display}
+      </div>
       </Aux>
     )
   }

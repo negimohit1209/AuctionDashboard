@@ -3,3 +3,7 @@
     flex-wrap: wrap;
     margin: 10px;
 }
+
+.fullscreen{
+    height: 750px;
+}

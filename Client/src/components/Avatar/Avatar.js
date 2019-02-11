@@ -16,8 +16,10 @@ const styles = {
 
 function ImageAvatars(props) {
   const { classes } = props;
+  let src = `assets/${props.image}.jpg`;
+  console.log(src)
   return (
-      <Avatar alt="Remy Sharp" src="assets/3.JPG" className={classes.bigAvatar} />
+      <Avatar alt="Remy Sharp" src={src} className={classes.bigAvatar} />
   );
 }
 

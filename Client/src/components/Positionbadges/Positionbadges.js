@@ -20,16 +20,27 @@ const styles = {
     color: '#fff',
     backgroundColor: deepPurple[500],
   },
+  greenAvatar: {
+    margin: 10,
+    color: '#fff',
+    backgroundColor: "#4caf50",
+  },
 };
 
 function LetterAvatars(props) {
   const { classes } = props;
+  let avatar;
+  if(props.position === 'Mid-fielder')
+  avatar = <Avatar className={classes.purpleAvatar}>MF</Avatar>
+  if(props.position === 'Goalkeeper')
+  avatar = <Avatar className={classes.avatar}>GK</Avatar>
+  if(props.position === 'Forward')
+  avatar = <Avatar className={classes.greenAvatar}>ST</Avatar>
+  if(props.position === 'Defender')
+  avatar = <Avatar className={classes.orangeAvatar}>DEF</Avatar>
   return (
     <Grid container justify="center" alignItems="center">
-      <Avatar className={classes.avatar}>GK</Avatar>
-      <Avatar className={classes.orangeAvatar}>DEF</Avatar>
-      <Avatar className={classes.purpleAvatar}>MF</Avatar>
-      <Avatar className={classes.purpleAvatar}>ST</Avatar>
+      {avatar}
     </Grid>
   );
 }
