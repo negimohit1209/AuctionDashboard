@@ -30,17 +30,37 @@ const styles = {
 function LetterAvatars(props) {
   const { classes } = props;
   let avatar;
-  if(props.position === 'Mid-fielder')
-  avatar = <Avatar className={classes.purpleAvatar}>MF</Avatar>
-  if(props.position === 'Goalkeeper')
-  avatar = <Avatar className={classes.avatar}>GK</Avatar>
-  if(props.position === 'Forward')
-  avatar = <Avatar className={classes.greenAvatar}>ST</Avatar>
-  if(props.position === 'Defender')
-  avatar = <Avatar className={classes.orangeAvatar}>DEF</Avatar>
+  let mid, gk, fwd, def;
+  if(props.position === 'Mid-fielder'){
+    mid = <Avatar className={classes.greenAvatar}>MF</Avatar>
+  }
+  else{
+    mid = <Avatar className={classes.avatar}>MF</Avatar>
+  }
+  if(props.position === 'Goalkeeper'){
+    gk = <Avatar className={classes.greenAvatar}>GK</Avatar>
+  }
+  else{
+    gk = <Avatar className={classes.avatar}>GK</Avatar>
+  }
+  if(props.position === 'Forward'){
+    fwd = <Avatar className={classes.greenAvatar}>ST</Avatar>
+  }
+  else{
+    fwd = <Avatar className={classes.avatar}>ST</Avatar>
+  }
+  if(props.position === 'Defender'){
+    def = <Avatar className={classes.greenAvatar}>DEF</Avatar>
+  }
+  else{
+    def = <Avatar className={classes.avatar}>DEF</Avatar>
+  }
   return (
     <Grid container justify="center" alignItems="center">
-      {avatar}
+      {gk}
+      {def}
+      {mid}
+      {fwd}
     </Grid>
   );
 }

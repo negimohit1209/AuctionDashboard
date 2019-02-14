@@ -41,7 +41,6 @@ export default class PlayerDashboard extends Component {
       <div className={classes.fullscreen}>
       <div className={classes.Card}>
       {this.props.teams.map((team,index) => {
-        console.log(team.playerNo)
         return (<SimpleCard key={index} name={team.Name} Amount={team.Amount} noOfPlayers={team.noOfPlayers} id={team._id} handleViewClick={this.handleViewClick} teamList={this.state.teamList} modalOpen={this.modalOpen} players={team.playerNo}/>)
       })}
     </div>

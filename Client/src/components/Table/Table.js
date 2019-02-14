@@ -48,7 +48,11 @@ function createData(name, calories, fat, carbs, protein) {
 function CustomizedTable(props) {
   const { classes } = props;
   let rows = [];
+    
     props.teamList.forEach((player) => {
+      if(player.price === 0){
+        player.price = "NA"
+      }
         rows.push(createData(player.Name, player.Department, player.Position, player.Hostel, player.price))
     })
   return (
@@ -57,8 +61,8 @@ function CustomizedTable(props) {
         <TableHead>
           <TableRow>
             <CustomTableCell>Player Name</CustomTableCell>
+            <CustomTableCell align="right">Department</CustomTableCell>
             <CustomTableCell align="right">Position</CustomTableCell>
-            <CustomTableCell align="right">Year</CustomTableCell>
             <CustomTableCell align="right">Hostel</CustomTableCell>
             <CustomTableCell align="right">Price</CustomTableCell>
           </TableRow>

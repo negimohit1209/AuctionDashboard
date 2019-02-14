@@ -19,6 +19,7 @@ export default class PlayerDashboard extends Component {
         openmodal = {this.props.selectTeam}
         score={this.props.auctionScore}
         teams = {this.props.teams}
+        loading = {this.props.loading}
         increment={this.props.auctionIncrement}
         modalOpen={this.props.modalOpen}
         decrement = {this.props.auctionDecrement}

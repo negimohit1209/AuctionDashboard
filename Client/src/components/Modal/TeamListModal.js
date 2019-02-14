@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
-import TeamsRadio from './TeamsRadio';
 import Table from '../Table/Table';
 
 function getModalStyle() {
@@ -36,12 +34,6 @@ class SimpleModal extends React.Component {
   render() {
     
     const { classes } = this.props;
-    let button = null;
-    if(this.props.playerTeam){
-      button = <Button variant="contained" color="secondary" className={classes.button} onClick={() => this.props.handleSold(this.props.player, this.props.playerTeam , this.props.auctionScore)}>
-            Sell
-          </Button>
-    }
     return (
       <div>
         <Modal

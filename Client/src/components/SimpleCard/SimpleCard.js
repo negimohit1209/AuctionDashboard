@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import ImageAvatars from '../Avatar/Avatar';
 import myclasses from './SImpleCard.module.css'
@@ -45,10 +43,10 @@ function SimpleCard(props) {
     </div>
   <div className={myclasses.Inner}>
   <Typography component="p">
-  Remaining Points: <strong>{props.Amount}</strong>
+  Remaining Purse: <strong>{props.Amount}</strong>
   </Typography>
   <Typography component="p">
-  Players: <strong>{props.noOfPlayers}</strong>
+  No of Players: <strong>{props.noOfPlayers}</strong>
   </Typography>
   </div>
       </div>

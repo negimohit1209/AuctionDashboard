@@ -20,7 +20,8 @@ class App extends Component {
       player: null,
       auctionScore: 0,
       selectTeam: false,
-      playerTeam: ""
+      playerTeam: "",
+      loading: false
     }
   }
 
@@ -28,13 +29,11 @@ class App extends Component {
     axios.get('http://localhost:5000/api/players').then(res => {this.setState({
       players: res.data
     })
-  console.log(this.state.players)
   })
   .then(() => {
     axios.get('http://localhost:5000/api/teams').then(res => {this.setState({
       teams: res.data
     })
-    console.log(this.state.teams)
     })
   })
   }
@@ -97,13 +96,14 @@ class App extends Component {
     })
   }
   handleSold = (player, team ,price) => {
+    this.setState({
+      loading: true
+    })
       axios.put(`http://localhost:5000/api/teams/${team}`, {price, playerNo: player.Number})
       .then(res => {
-        console.log(res);
         return axios.put(`http://localhost:5000/api/players/${player._id}/${team}`, {price});
       })
       .then(res => {
-        console.log(res);
         return axios.get("http://localhost:5000/api/players");
       })
       .then(res => {
@@ -120,6 +120,7 @@ class App extends Component {
           auctionScore: 0,
           selectTeam: false,
           playerTeam: "",
+          loading: false
         })
       })
       .catch(err => console.log(err))     
@@ -135,6 +136,7 @@ class App extends Component {
         playerTeam = {this.state.playerTeam}
         auctionScore = {this.state.auctionScore}
         selectTeam = {this.state.selectTeam}
+        loading = {this.state.loading}
         auctionIncrement = {this.auctionIncrement}
         auctionDecrement = {() => this.auctionDecrement(100)}
         modalOpen = {this.modalOpen}
