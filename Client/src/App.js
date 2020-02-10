@@ -3,7 +3,8 @@ import PlayerDashboard from './containers/PlayerDashboard/PlayerDashboard';
 import TeamDashboard from './containers/TeamDashboard/TeamDashboard';
 import './App.css';
 import Paper from './components/Paper/Paper';
-import axios from 'axios'
+import axios from 'axios';
+import {db} from './firebase/firebase';
 // import { Provider } from 'react-redux';
 // import store from './Playground/store';
 // import Playground from './Playground/component/playground';
@@ -21,21 +22,18 @@ class App extends Component {
       auctionScore: 0,
       selectTeam: false,
       playerTeam: "",
-      loading: false
+      loading: false,
+      teamPlayerImages:[]
     }
   }
 
-  componentDidMount(){
-    axios.get('http://localhost:5000/api/players').then(res => {this.setState({
-      players: res.data
+  async componentDidMount(){
+    db.collection('teams').get().then((snapshot) => {
+      let docTeams = snapshot.docs.map(doc => ({captainImage: doc.data().captainImage,amount: doc.data().amount, noOfPlayers: doc.data().noOfPlayers, teamName: doc.id}));
+      this.setState({
+        teams: docTeams
+      });
     })
-  })
-  .then(() => {
-    axios.get('http://localhost:5000/api/teams').then(res => {this.setState({
-      teams: res.data
-    })
-    })
-  })
   }
   StartAuction = () => {
     this.setState({displayWelcomePage: false})
@@ -43,12 +41,18 @@ class App extends Component {
   OpenRulePage = () => {
     this.setState({displayWelcomePage: true})
   }
-  handleNextPlayerFormSubmit = (event) => {
+  handleNextPlayerFormSubmit = async (event) => {
     event.preventDefault();
-    let player = this.state.players.find((player) => player.Number === this.state.playerNumberToBeDisplayed)
-    this.setState({
-      displayPlayerDetail: true,
-      player: player
+    await db.collection('players').doc(this.state.playerNumberToBeDisplayed.toString()).get().then((doc) => {
+      if(doc.exists){
+        let player = {...doc.data(), number: doc.id}
+        this.setState({
+          displayPlayerDetail: true,
+          player: player
+        })
+      }else{
+        console.log("No such document!");
+      }
     })
   }
   handleNextPlayerFormChange = (event) => {
@@ -62,9 +66,11 @@ class App extends Component {
   }
   auctionDecrement = (amt) => { 
     let decreasedPoints = this.state.auctionScore - amt;
-    this.setState({
-      auctionScore: decreasedPoints
-    })
+    if(decreasedPoints >= 0){
+      this.setState({
+        auctionScore: decreasedPoints
+      })
+    } 
   }
   auctionReset = () => {
     this.setState({
@@ -95,35 +101,50 @@ class App extends Component {
       playerTeam: "",
     })
   }
-  handleSold = (player, team ,price) => {
+  handleSold = async (player, teamName ,price) => {
     this.setState({
       loading: true
     })
-      axios.put(`http://localhost:5000/api/teams/${team}`, {price, playerNo: player.Number})
-      .then(res => {
-        return axios.put(`http://localhost:5000/api/players/${player._id}/${team}`, {price});
-      })
-      .then(res => {
-        return axios.get("http://localhost:5000/api/players");
-      })
-      .then(res => {
-        this.setState({players: res.data})
-        return axios.get("http://localhost:5000/api/teams");
-      })
-      .then(res => {
+    let team;
+    await db.collection('teams').doc(teamName).get().then((doc) => {
+      team = {
+        ...doc.data(),
+        teamName: doc.id,
+      }
+    });
+      if(team.amount > price){
+        let batch = db.batch();
+        var teamRef = db.collection("teams").doc(team.teamName);
+        batch.update(teamRef, {amount: team.amount - price, noOfPlayers: team.noOfPlayers + 1});
+        var teamPlayerRef = db.collection('teams').doc(team.teamName).collection('players').doc(player.number);
+        batch.set(teamPlayerRef, {amount: price, photo: player.photo, name: player.name, whatsAppNumber: player.whatsAppNumber, hostel: player.hostel, position: player.position});
+        var playerRef = db.collection('players').doc(player.number);
+        batch.update(playerRef, {teamName: team.teamName, amount: price, });
+        batch.commit().then(() => {
+          db.collection('teams').get().then((snapshot) => {
+            let docTeams = snapshot.docs.map(doc => ({captainImage: doc.data().captainImage,amount: doc.data().amount, noOfPlayers: doc.data().noOfPlayers, teamName: doc.id}));
+            this.setState({
+              teams: docTeams,
+              displayWelcomePage: false,
+            displayPlayerDetail: false,
+            playerNumberToBeDisplayed: null,
+            player: null,
+            auctionScore: 0,
+            selectTeam: false,
+            playerTeam: "",
+            loading: false
+            });
+          });
+        }).catch((err) => {
+          this.setState({
+            loading: false
+          })
+        }); 
+      } else {
         this.setState({
-          teams: res.data,
-          displayWelcomePage: false,
-          displayPlayerDetail: false,
-          playerNumberToBeDisplayed: null,
-          player: null,
-          auctionScore: 0,
-          selectTeam: false,
-          playerTeam: "",
           loading: false
         })
-      })
-      .catch(err => console.log(err))     
+      }  
   }
   render() {
     return (

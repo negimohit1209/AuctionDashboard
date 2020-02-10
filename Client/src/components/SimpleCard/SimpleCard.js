@@ -9,6 +9,7 @@ import myclasses from './SImpleCard.module.css'
 const styles = {
   card: {
     minWidth: 275,
+    margin: "auto",
     width: 300,
     height: 240,
     boxSizing: "border-box" 
@@ -37,15 +38,13 @@ function SimpleCard(props) {
       {props.name}
     </Typography>
     <div className={myclasses.Avatar}>
-    
-    {props.players.map(player => <ImageAvatars image={player} size="small"/>)}
-    
+    <ImageAvatars image={props.image} size="medium"/>
     </div>
   <div className={myclasses.Inner}>
-  <Typography component="p">
+  <Typography component="h6" variant="h6">
   Remaining Purse: <strong>{props.Amount}</strong>
   </Typography>
-  <Typography component="p">
+  <Typography component="h6" variant="h6">
   No of Players: <strong>{props.noOfPlayers}</strong>
   </Typography>
   </div>

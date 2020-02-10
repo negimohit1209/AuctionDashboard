@@ -6,35 +6,35 @@ import Typography from '@material-ui/core/Typography';
 import LetterAvatars from '../../../../components/Positionbadges/Positionbadges';
 
 const PlayerInfo = (props) => {
-  let department = props.player.Department
-  if(props.player.Department === "Electronics and Telecommunication Engineering"){
+  let department = props.player.department
+  if(props.player.department === "Electronics and Telecommunication Engineering"){
     department = "Electronics and Telecommunication"
   }
-  if(props.player.Department === "Architecture, Town and Regional Planning"){
+  if(props.player.department === "Architecture, Town and Regional Planning"){
     department = "Architecture"
   }
   return (
     <div className={classes.Details}>
       <div className="Avatar">
         
-        <ImageAvatars image={props.player.Number} size="big" team={props.player.Team}/>
+        <ImageAvatars image={props.player.photo} size="big" team={props.player.teamName}/>
       </div>
       <div className={classes.Upinfo}>
         <Paper>
           <div className={classes.Info}>
           <Typography variant="h5" component="h2">
-          {props.player.Name}
+          {props.player.name}
         </Typography>
         <Typography variant="h5" component="h2">
           {department}
         </Typography>
         <Typography variant="h5" component="h2">
-          {props.player.Hostel}
+          {props.player.hostel}
         </Typography>
         <Typography variant="h5" component="h2">
-          {props.player.Year}
+          {props.player.year}
         </Typography>
-          <LetterAvatars position={props.player.Position}/>
+          <LetterAvatars position={props.player.position}/>
           </div>
         </Paper>
         </div> 

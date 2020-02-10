@@ -32,7 +32,7 @@ class TeamsRadio extends React.Component {
             className={classes.group}
             value={this.props.selectedValue}
             onChange={this.props.handleChange}
-          >{this.props.teams.map(team => (<FormControlLabel value={team._id} control={<Radio />} label={team.Name} key={team._id}/>))}
+          >{this.props.teams.map(team => (<FormControlLabel value={team.teamName} control={<Radio />} label={team.teamName} key={team.teamName}/>))}
         
           </RadioGroup>
         </FormControl>

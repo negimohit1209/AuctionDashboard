@@ -53,7 +53,7 @@ function CustomizedTable(props) {
       if(player.price === 0){
         player.price = "NA"
       }
-        rows.push(createData(player.Name, player.Department, player.Position, player.Hostel, player.price))
+        rows.push(createData(player.name, player.hostel, player.amount, player.position, player.whatsAppNumber))
     })
   return (
     <Paper className={classes.root}>
@@ -61,10 +61,10 @@ function CustomizedTable(props) {
         <TableHead>
           <TableRow>
             <CustomTableCell>Player Name</CustomTableCell>
-            <CustomTableCell align="right">Department</CustomTableCell>
-            <CustomTableCell align="right">Position</CustomTableCell>
             <CustomTableCell align="right">Hostel</CustomTableCell>
             <CustomTableCell align="right">Price</CustomTableCell>
+            <CustomTableCell align="right">Position</CustomTableCell>
+            <CustomTableCell align="right">Whatsapp Number</CustomTableCell>
           </TableRow>
         </TableHead>
         <TableBody>

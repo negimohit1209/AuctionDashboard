@@ -28,10 +28,10 @@ export default function Welcome(props) {
       Developer: <strong>Mohit Negi</strong>
   </Typography>
   <Typography component="p">
-  Auctioneer : <strong>Kanav Mehra</strong>
+  Auctioneer : <strong>Anand Krishna</strong>
   </Typography>
   <Typography component="p">
-  Chairman (IFL) : <strong>Vikas Meena</strong>
+  Chairman (IFL) : <strong>Sanat Mandi</strong>
   </Typography>
     </div>
     </Aux>

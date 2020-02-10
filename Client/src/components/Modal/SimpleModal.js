@@ -43,11 +43,10 @@ class SimpleModal extends React.Component {
           </Button>
     }
     let mydiv = null
-    console.log(this.props.loading)
     if(this.props.loading === false){
       mydiv = <div style={getModalStyle()} className={classes.paper}>
       <Typography variant="h6" id="modal-title">
-        Sell Player No. {this.props.player.Number} i.e "{this.props.player.Name}" for {this.props.auctionScore} points to:
+        Sell Player No. {this.props.player.number} i.e "{this.props.player.name}" for {this.props.auctionScore} points to:
       </Typography>
       <TeamsRadio playerTeam={this.props.playerTeam} teams={this.props.teams} handleChange={(e) => this.props.handleTeamSelect(e)}/>
       {button}

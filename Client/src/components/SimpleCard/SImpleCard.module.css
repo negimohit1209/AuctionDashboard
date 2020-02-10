@@ -4,7 +4,6 @@
     display: flex;
     flex-wrap: wrap;
 }
-
 .Outer{
     position: relative;
     height: 225px;

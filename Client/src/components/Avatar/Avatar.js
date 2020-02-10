@@ -27,12 +27,17 @@ const styles = {
     width: 38,
     height: 38,
   },
+  mediumAvatar: {
+    margin: 'auto',
+    width: 110,
+    height: 110,
+  },
 };
 
 function ImageAvatars(props) {
   
   const { classes } = props;
-  let src = `assets/${props.image}.jpg`;
+  let src = `https://drive.google.com/uc?export=view&id=${props.image}`;
   let size = props.size;
   let team = props.team
   if(size === "big"){
@@ -54,6 +59,11 @@ function ImageAvatars(props) {
   if(size === "small"){
     return (
       <Avatar alt="o" src={src} className={classes.smallAvatar} />
+  );
+  }
+  if(size === "medium"){
+    return (
+      <Avatar alt="o" src={src} className={classes.mediumAvatar} />
   );
   }
 

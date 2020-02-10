@@ -1,9 +1,10 @@
 .Card{
+    height: 750px;
     display: flex;
     flex-wrap: wrap;
     margin: 10px;
 }
 
 .fullscreen{
-    height: 750px;
+    height: 1000px;
 }
